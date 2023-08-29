@@ -30,7 +30,7 @@ export default async function fetchContracts(
         const message = await program.account.contract.all();
         for (var i = 0; i < message.length; i++){
             if(message[i].account.authority.toString() == walletOfAuthority){
-                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000", adress: message[i].publicKey.toString()});
+                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000/dashboard/newcontract", adress: message[i].publicKey.toString()});
             }
             
         }

@@ -1,5 +1,6 @@
 "use client"
 import Image from 'next/image'
+import Link from 'next/link';
 import styles from './styles/main.module.scss'
 import { useState, useEffect} from "react"
 
@@ -63,10 +64,10 @@ export default function Home() {
           />
         </div>
         <div className={styles.headerRight}>
-            <p>ABOUT</p>
-            <p>GITHUB</p>
-            <p>MORE</p>
-            <div className={styles.contactHeader}></div>
+            <Link href=""><p>ABOUT</p></Link>
+            <Link href="https://github.com/epichome/DindiDoc"><p>GITHUB</p></Link>
+            <Link href="/dashboard"><p>LOGIN</p></Link>
+            <Link href="/dashboard"><div className={styles.contactHeader}></div></Link>
         </div>
     </section>
     <section className={`${styles.landing} ${LandingState}`} id='landing'>
