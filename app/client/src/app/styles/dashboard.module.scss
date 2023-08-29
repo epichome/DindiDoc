@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Font'; 
+    src: url('/font.woff2');
+}
+.body{
+    background-color: azure;
+}
+//navbar
+.navbar{
+    position: fixed;
+    height: calc(100% - 40px);
+    width: 200px;
+    //background-color: black;
+
+    margin: 20px;
+    display: grid;
+    place-items: center;
+}
+
+.navbarContainer{
+    height: 100%;
+    width: 100%;
+    background-color: wheat;
+    border-radius: 6px;
+}
+
+//contractSection
+.main{
+    //background-color: blue;
+    width: calc(94% - 240px);
+    height: 98vh;
+
+    margin-left: 240px;
+    padding-top: 2vh;
+
+    padding-left: 3%;
+    padding-right: 3%;
+
+    font-family: font !important;
+}
+
+.searchbar{
+    height: 50px;
+    width: 100%;
+    border: solid 1px lightgray;
+}
+
+.helloContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+.contentContainer{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.contentWrapper{
+    display: grid;
+    
+    grid-template-columns: repeat(3, 1fr);
+    /* This is better for small screens, once min() is better supported */
+    /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
+    gap: 30px;
+}
+
+.textHeader{
+    font-size: 30px;
+    width: 40vw;
+}
+
+.infoCard{
+    height: 180px;
+    width: 100%;
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    background-color: white;
+
+    font-size: small;
+    overflow: hidden;
+}
+
+.infoCard:hover{
+    border-color: blue;
+}

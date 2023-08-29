@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'Font'; 
+    src: url('/font.woff2');
+}
+//body 
+.body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: font !important;
+}
+.main{
+    background-color: white;
+    width: 100vw;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    
+}
+//Scrollbar 
+/* width 
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  //Track 
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  //Handle
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  //Handle on hover
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }*/
+
+//header
+.header{
+    position: fixed;
+    top: -15%;
+    height: 15vh;
+    width: 80vw;
+    z-index: 2;
+
+    padding-left: 10vw;
+    padding-right: 10vw;
+
+    display: flex;
+    justify-content: space-between;
+
+    //mix-blend-mode: difference;
+    background-color: rgb(15, 13, 13);
+
+    transition: top 0.2s linear, background-color 0.3s linear ;;
+}
+.headerLeft{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.headerLeft img{
+    height: 25%;
+    mix-blend-mode: difference;
+}
+.headerRight{
+    display: flex;
+    align-items: center;
+    color: white;
+    mix-blend-mode: difference;
+}
+.headerRight p{
+    margin-left: 50px;
+    mix-blend-mode: difference;
+}
+
+.contactHeader{
+    width: 32px;
+    height: 27px;
+    background-color: #ac68cc; //inverse #539733
+    margin-left: 50px;
+    border-radius: 4px;
+}
+
+.headerActive{
+    top: 0vh !important;
+}
+.headerInactive{
+    top: -15vh;
+}
+
+.headerChange{
+    background-color: white !important;
+}
+//landing
+
+.landing{
+    width: 100vw;
+    height: 200vh;
+    background-color: rgb(15, 13, 13);
+    color: white;
+    position: relative;
+    top: -15vh;
+    
+    z-index: 1;
+
+    transition: background-color 0.3s linear ;
+}
+
+.landingTxt{
+    position: absolute;
+    top: 40vh;
+    left: 10vw;
+    
+}
+.landingTxt h1{
+    font-size: 150px;
+}
+.landingTxt p{
+    font-size: 30px;
+}
+
+.landingChange{
+    background-color: transparent !important;
+}
+//about 
+.about{
+    position: relative;
+    top: -110vh;
+    //width: 100vw;
+    height: 100vw;
+    background-color: white;
+
+    padding-left: 15vw;
+    padding-right: 15vw;
+
+    //border-top: gray solid 1px;
+    
+}
+.about h1{
+    padding-top: 60px;
+}
+.textTitle{
+    font-size: 100px;
+    width: 50vw;
+}
+.textLeftFloat{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
+}
+.textHeader{
+    padding-top: 60px;
+    font-size: 45px;
+}
+.textSubheader{
+    font-size: 30px;
+    width: 40vw;
+    float: left;
+}
+.textMain{
+    padding-top: 30px;
+}
+
+.imageLarge{
+    object-fit: cover;
+    object-position: 40px 60%;
+    padding-top: 60px;
+    height: 900px;
+    width: 90%;
+    filter: grayscale(80%);
+}
+
+.footer{
+    background-color: rgb(15, 13, 13);
+    height: 600px;
+    padding-left: 12%; padding-right: 12%; padding-top: 80px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.footerLeft{
+    width: 50%;
+}
+.footerLeftImg{
+    height: 70px;
+}
+.footerRight{
+    width: 50%;
+}
+.footerRightNav{
+    margin-top: 140px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    
+}
+
+.footerRightNav h1:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
