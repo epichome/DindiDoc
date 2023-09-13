@@ -1,5 +1,6 @@
 "use client"
 import Link from 'next/link';
+import Image from 'next/image'
 import styles from '../styles/dashboard.module.scss';
 import { useState, useEffect} from "react"
 
@@ -26,12 +27,10 @@ export default function ContractSection(){
     const wallet = useAnchorWallet();
     const mounted = useIsMounted();
 
-    const [contentList, setContentList] = useState([
-        {t: "", body: "", link: "/", adress: ""},
-    ])
+    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; }[]>([])
 
     useEffect(() => {
-        const fetchData = async (wallet) => {
+        const fetchData = async (wallet: any) => {
             const contract = await fetchContracts(
                 wallet?.publicKey.toString(),
                 wallet,
@@ -45,7 +44,7 @@ export default function ContractSection(){
         if (wallet){
             fetchData(wallet);
         }else{
-            setContentList([{ t: "", body: "", link: "/", adress: "", }])
+            setContentList([])
         }
     }, [wallet])
 
@@ -53,7 +52,13 @@ export default function ContractSection(){
         <main className={styles.main}>
             <section id="searchbar" className={styles.searchbar}>
                 <div className={styles.searchbarInput}>
-                    <div>O</div>
+                    <Image
+                        className={styles.navbarImage}
+                        src="/images/search.png"
+                        width={18}
+                        height={18}
+                        alt="Picture of the author"
+                    />
                     <input type="text" placeholder='Search after contract'></input>
                     <div></div>
                 </div>
@@ -66,17 +71,14 @@ export default function ContractSection(){
             <section id="my-contracts" className={styles.contentContainer}>
                 <h1 className={styles.textHeader}>Contracts</h1>
                 <div className={styles.contentWrapper}>
-                    {contentList.map((ind) => (
-                        <Link href={ind.link} className={styles.infoCard}>
+                    
+                {contentList && contentList.map((ind) => (
+                        <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} >
                             <div>Detta är ett test där man loopar igenom contentList med ind</div>
                             <h1 className={styles.h1}>Detta är texten: {ind.body}</h1>
                             <h2>Detta är värdet: {ind.t}</h2>
                             <div>adress: {ind.adress}</div>
                         </Link>    
-                        //byt ägare till kontraktet 
-                        //lägg till notering
-                        //ta bort kontraktet 
-                        //signera kontraktet
                     ))}
                 </div>    
             </section>
@@ -84,7 +86,7 @@ export default function ContractSection(){
             <section id="create-contract" className={styles.contentContainer}>
                 <h1 className={styles.textHeader}>Create New Contract</h1>
                 <div className={styles.contentWrapper}>
-                    <Link href="/dashboard/newcontract" className={styles.infoCard}>
+                    <Link href={{pathname: "/dashboard/newcontract"}} className={styles.infoCard}>
                     
                     </Link>    
                 </div>

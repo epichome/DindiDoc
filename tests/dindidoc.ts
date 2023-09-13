@@ -148,7 +148,6 @@ describe("dindidoc", () => {
       .addNotes(note)
       .accounts({
         contract: contractkey.publicKey,
-        authority: provider.wallet.publicKey,
         systemProgram: anchor.web3.SystemProgram.programId,
       })
       .rpc()
@@ -158,5 +157,73 @@ describe("dindidoc", () => {
     );
 
     console.log(contractAccountChange.notes)
+  });
+
+  it("Close account", async () => {
+    //create contract
+    console.log("Creating contract")
+    const contractkey = anchor.web3.Keypair.generate();
+    const ownersName = "ME"
+    const terms = "This is the terms"
+    const tx = await program.methods
+      .createContract(terms, ownersName)
+      .accounts({
+        contract: contractkey.publicKey, 
+        authority: provider.wallet.publicKey, 
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .signers([contractkey])
+      .rpc();
+
+    const contractAccount = await program.account.contract.fetch(
+     contractkey.publicKey
+    );
+    console.log(contractAccount.authority)
+    console.log(contractAccount.terms)
+
+    //Close account
+    await program.methods
+      .close()
+      .accounts({
+        contract: contractkey.publicKey,
+        destination: provider.wallet.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc()
+ });
+
+  it("Close account with wrong account", async () => {
+    //create contract
+    console.log("Creating contract")
+    const contractkey = anchor.web3.Keypair.generate();
+    const ownersName = "ME"
+    const terms = "This is the terms"
+    const falseSigner = anchor.web3.Keypair.generate();
+    const tx = await program.methods
+      .createContract(terms, ownersName)
+      .accounts({
+        contract: contractkey.publicKey, 
+        authority: falseSigner.publicKey, 
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .signers([contractkey])
+      .rpc();
+
+    const contractAccount = await program.account.contract.fetch(
+     contractkey.publicKey
+    );
+    console.log(contractAccount.authority)
+    console.log(contractAccount.terms)
+
+    //close with wrong signer 
+    
+    await program.methods
+      .close()
+      .accounts({
+        contract: contractkey.publicKey,
+        destination: provider.wallet.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc()
   });
 });

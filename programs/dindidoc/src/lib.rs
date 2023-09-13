@@ -44,13 +44,21 @@ pub mod dindidoc {
         if contract.authority == authority{
             let new_notes = contract.notes.clone() + " " + &new_note ;
             contract.notes = new_notes
-            
         }else {
-            ContractError::MissingAuthority;
+            return Err(ContractError::MissingAuthority.into());
         }
         Ok(())
     }
+    
+    pub fn close(ctx: Context<Close>) -> Result<()> {
+        let contract: &mut Account<Contract> = &mut ctx.accounts.contract;
+        let authority: Pubkey = ctx.accounts.authority.key();
 
+        if contract.authority != authority {
+            return Err(ContractError::MissingAuthority.into());
+        }
+        Ok(())
+    }
 
 }
 
@@ -79,6 +87,19 @@ pub struct AddNote<'info> {
     #[account(mut)]
     pub authority: Signer<'info>,
     pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct Close<'info> {
+    #[account(mut, close = destination)]
+    /// CHECK: No checks through types are necessary because the `destination` account
+    /// is being closed, and all its data will be transferred to the account being closed into.
+    contract: Account<'info, Contract>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    pub system_program: Program<'info, System>,
+    /// CHECK: No checks through types are necessary as this account is being closed.
+    destination: AccountInfo<'info>,
 }
 
 #[account]

@@ -86,16 +86,6 @@
     border: solid 1px rgb(230,230,230);
 }
 
-.contentContainerTopInfo{
-    display: flex;
-}
-
-.contentContainerTopInfoDiv{
-    width: 50%;
-}
-
-.contentContainerTerms{
-    width: 100%;
-    height: 400px;
-    resize: none
+.contentContainer div {
+    white-space: pre-wrap;
 }

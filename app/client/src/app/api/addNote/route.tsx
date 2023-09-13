@@ -8,9 +8,10 @@ import {
 } from "../utils/constants";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 
-export default async function fetchContracts(
-    walletOfAuthority: string,
+export default async function createContract(
+    note: string,
     wallet: AnchorWallet,
+    contractAccount: string,
   ) {
     const provider = new AnchorProvider(connection, wallet, {
       preflightCommitment: commitmentLevel,
@@ -26,17 +27,24 @@ export default async function fetchContracts(
     ) as Program<Dindidoc>;
   
     try {
-        var jsonString = [];
-        const message = await program.account.contract.all();
-        for (var i = 0; i < message.length; i++){
-            if(message[i].account.authority.toString() == walletOfAuthority){
-                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000/dashboard/changecontract", adress: message[i].publicKey.toString()});
-            }
-        }
-        console.log(jsonString.toString())
-        return jsonString;
+      /* interact with the program via rpc */
+      const txn = await program.methods
+        .addNotes(note)
+        .accounts({
+          contract: contractAccount,
+          authority: provider.wallet.publicKey,
+          systemProgram: web3.SystemProgram.programId,
+        })
+        //.signers([contractAccount])
+        .rpc()
+  
+      const message = await program.account.contract.fetch(
+        contractAccount
+      );
+      console.log("contractAccount Data: ", message);
+      return message;
     } catch (err) {
-        console.log("Transaction error: ", err);
-        return;
+      console.log("Transaction error: ", err);
+      return;
     }
   }

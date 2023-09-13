@@ -87,6 +87,35 @@ export type Dindidoc = {
           "type": "string"
         }
       ]
+    },
+    {
+      "name": "close",
+      "accounts": [
+        {
+          "name": "contract",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "is being closed, and all its data will be transferred to the account being closed into."
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "destination",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -224,6 +253,35 @@ export const IDL: Dindidoc = {
           "type": "string"
         }
       ]
+    },
+    {
+      "name": "close",
+      "accounts": [
+        {
+          "name": "contract",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "is being closed, and all its data will be transferred to the account being closed into."
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "destination",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [

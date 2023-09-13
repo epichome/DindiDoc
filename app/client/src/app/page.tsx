@@ -64,7 +64,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.headerRight}>
-            <Link href=""><p>ABOUT</p></Link>
+            <Link href="/whitepaper"><p>ABOUT</p></Link>
             <Link href="https://github.com/epichome/DindiDoc"><p>GITHUB</p></Link>
             <Link href="/dashboard"><p>LOGIN</p></Link>
             <Link href="/dashboard"><div className={styles.contactHeader}></div></Link>

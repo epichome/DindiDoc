@@ -8,8 +8,8 @@ import {
 } from "../utils/constants";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 
-export default async function fetchContracts(
-    walletOfAuthority: string,
+export default async function fetchContractData(
+    adress: string,
     wallet: AnchorWallet,
   ) {
     const provider = new AnchorProvider(connection, wallet, {
@@ -26,15 +26,10 @@ export default async function fetchContracts(
     ) as Program<Dindidoc>;
   
     try {
-        var jsonString = [];
-        const message = await program.account.contract.all();
-        for (var i = 0; i < message.length; i++){
-            if(message[i].account.authority.toString() == walletOfAuthority){
-                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000/dashboard/changecontract", adress: message[i].publicKey.toString()});
-            }
-        }
-        console.log(jsonString.toString())
-        return jsonString;
+        const contract = await program.account.contract.fetch(
+            adress
+        );
+        return contract;
     } catch (err) {
         console.log("Transaction error: ", err);
         return;

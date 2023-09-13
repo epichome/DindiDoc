@@ -7,12 +7,13 @@ import {
   helloWorldprogramInterface,
 } from "../utils/constants";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
+import { PublicKey } from "@solana/web3.js";
 
 export default async function createContract(
-    ownersName: string,
-    terms: string,
+    newOwnerPublicKey: string,
+    newOwnerName: string,
     wallet: AnchorWallet,
-    contractAccount: web3.Keypair
+    contractAccount: string,
   ) {
     const provider = new AnchorProvider(connection, wallet, {
       preflightCommitment: commitmentLevel,
@@ -28,20 +29,22 @@ export default async function createContract(
     ) as Program<Dindidoc>;
   
     try {
-      console.log(terms)
       /* interact with the program via rpc */
+      const newPublicKey = new PublicKey(
+        newOwnerPublicKey
+      );
       const txn = await program.methods
-        .createContract(terms, ownersName)
+        .transferContract(newPublicKey, newOwnerName)
         .accounts({
-          contract: contractAccount.publicKey,
+          contract: contractAccount,
           authority: provider.wallet.publicKey,
           systemProgram: web3.SystemProgram.programId,
         })
-        .signers([contractAccount])
+        //.signers([contractAccount])
         .rpc()
   
       const message = await program.account.contract.fetch(
-        contractAccount.publicKey
+        contractAccount
       );
       console.log("contractAccount Data: ", message);
       return message;

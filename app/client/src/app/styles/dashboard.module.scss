@@ -2,24 +2,19 @@
     font-family: 'Font'; 
     src: url('/font.woff2');
 }
-.body{
-    background-color: azure;
-}
+
 //navbar
 .navbar{
     position: fixed;
-    height: calc(100% - 40px);
-    width: 200px;
-    //background-color: black;
-
-    margin: 20px;
+    height: 100%;
+    width: 240px;
     display: grid;
     place-items: center;
 }
 
 .navbarContainer{
-    height: 100%;
-    width: 100%;
+    margin: 20px;
+    position:absolute; top:0; left:0; right:0; bottom:0;
     background-color: rgb(15, 13, 13);
     border-radius: 6px;
 }
@@ -31,33 +26,36 @@
 //contractSection
 .main{
     //background-color: blue;
-    width: calc(94% - 240px);
-    height: 98vh;
+    width: calc(100% - 240px);
+    height: 100vh;
 
     margin-left: 240px;
-    padding-top: 2vh;
+    padding-top: 20px;
 
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 20px;
+    padding-right: 20px;
 
     font-family: font !important;
 }
 
 .searchbar{
     height: 50px;
-    width: calc(100% - 20px);
+    width: 100%;
     border: solid 1px lightgray;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 10px; padding-right: 10px;
+
+    background-color: white;
+    border-radius: 8px;
 }
 
 .searchbarInput{
     width: 400px;
     height: 30px;
     border: 1px solid grey;
-    border-radius: 10px;
+    border-radius: 8px;
 
     display: flex;
     align-items: center;
@@ -84,12 +82,21 @@
 .searchbarInput div{
     transition: color 0.4s;
 }
+.searchbarInput img{
+    transition: filter 0.4s;
+}
+
+.searchbarInput:hover img{
+    filter: invert(8%) sepia(99%) saturate(7479%) hue-rotate(248deg) brightness(99%) contrast(144%);
+}
+
 .searchbarInput:hover div{
     color: blue;
 }
 
 .WalletMultiButton button{
     background-color: rgb(15, 13, 13);
+    font-family: Font !important;
 }
 
 .helloContainer{
@@ -121,12 +128,18 @@
 .infoCard{
     height: 180px;
     width: 100%;
-    border: solid 1px lightgray;
+    border: solid 1px rgb(230,230,230);
     border-radius: 5px;
     background-color: white;
 
     font-size: small;
     overflow: hidden;
+
+    background-color: white;
+    //background: rgb(1,41,86);
+    //background: linear-gradient(35deg, rgba(1,41,86,1) 0%, rgba(4,87,122,1) 100%);
+
+    color: black !important;
 }
 
 .infoCard:hover{
