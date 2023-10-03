@@ -7,7 +7,7 @@ declare_id!("HNhKbNom5uxSh87XJ6FwKDwP1CapZDhmRJLnmw4Ad52P");
 pub mod dindidoc {
     use super::*;
 
-    pub fn create_contract(ctx: Context<CreateContract>, terms: String, owners_name: String) -> Result<()> {
+    pub fn create_contract(ctx: Context<CreateContract>, terms: String, owners_name: String, storage_type: i32) -> Result<()> {
         let contract: &mut Account<Contract> = &mut ctx.accounts.contract;
         let authority: &Signer = &ctx.accounts.authority;
         let clock: Clock = Clock::get().unwrap();
@@ -16,6 +16,7 @@ pub mod dindidoc {
         contract.chain_of_ownership = owners_name;
         contract.terms = terms;
         contract.timestamp = clock.unix_timestamp;
+        contract.storage_type = storage_type;
 
         Ok(())
     }
@@ -111,6 +112,7 @@ pub struct Contract {
     pub signature1: String,
     pub signature2: String,
     pub timestamp: i64,
+    pub storage_type: i32,
 }
 
 #[error_code]

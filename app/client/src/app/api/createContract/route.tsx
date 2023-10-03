@@ -11,6 +11,7 @@ import { AnchorWallet } from "@solana/wallet-adapter-react";
 export default async function createContract(
     ownersName: string,
     terms: string,
+    inputType: number,
     wallet: AnchorWallet,
     contractAccount: web3.Keypair
   ) {
@@ -31,7 +32,7 @@ export default async function createContract(
       console.log(terms)
       /* interact with the program via rpc */
       const txn = await program.methods
-        .createContract(terms, ownersName)
+        .createContract(terms, ownersName, inputType)
         .accounts({
           contract: contractAccount.publicKey,
           authority: provider.wallet.publicKey,

@@ -11,52 +11,53 @@ export default function DropDown() {
     return (
     <div
         tabIndex={0}
-        onBlur={handleBlur}>
-    <div className={styles.dropdown}>
-        <div
-        onClick={(e) => {
-            setIsActive(!isActive);
-        }}
-        className={styles.dropdownBtn}
+        onBlur={handleBlur}
         >
-        {selected}
-        <span
-            className={isActive ? styles.faCaretUp : styles.faCaretDown}
-        />
-        </div>
-        <div
-        className={styles.dropdownContent}
-        style={{ display: isActive ? "block" : "none" }}
-        >
-        <div
+        <div className={styles.dropdown}>
+            <div
             onClick={(e) => {
-            setIsSelected(e.target.textContent);
-            setIsActive(!isActive);
+                setIsActive(!isActive);
             }}
-            className={styles.item}
-        >
-            Text
+            className={styles.dropdownBtn}
+            >
+            {selected}
+            <span
+                className={isActive ? styles.faCaretUp : styles.faCaretDown}
+            />
+            </div>
+            <div
+            className={styles.dropdownContent}
+            style={{ display: isActive ? "block" : "none" }}
+            >
+            <div
+                onClick={(e) => {
+                setIsSelected(e.target.textContent);
+                setIsActive(!isActive);
+                }}
+                className={styles.item}
+            >
+                Text
+            </div>
+            <div
+                className={styles.item}
+                onClick={(e) => {
+                setIsSelected(e.target.textContent);
+                setIsActive(!isActive);
+                }}
+            >
+                Encrypted
+            </div>
+            <div
+                className={styles.item}
+                onClick={(e) => {
+                setIsSelected(e.target.textContent);
+                setIsActive(!isActive);
+                }}
+            >
+                Hashed
+            </div>
+            </div>
         </div>
-        <div
-            className={styles.item}
-            onClick={(e) => {
-            setIsSelected(e.target.textContent);
-            setIsActive(!isActive);
-            }}
-        >
-            Encrypted
-        </div>
-        <div
-            className={styles.item}
-            onClick={(e) => {
-            setIsSelected(e.target.textContent);
-            setIsActive(!isActive);
-            }}
-        >
-            Hashed
-        </div>
-        </div>
-    </div>
     </div>
     );
   }

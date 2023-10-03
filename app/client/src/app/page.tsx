@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link';
+import Footer from './components/footer'
 import styles from './styles/main.module.scss'
 import { useState, useEffect} from "react"
 
@@ -96,26 +97,7 @@ export default function Home() {
         <h2 className={styles.textMain}>DindiDoc lets you create documents that satisfies the legal requirments to be considered original.</h2>
     </section>
     <section className={styles.contact}></section>
-    <section className={styles.footer}>
-        <div className={styles.footerLeft}>
-            <Image
-              src="/images/logov2.png"
-              width={50}
-              height={50}
-              alt="Picture of the author"
-              id='footer-left-img'
-            />
-        </div>
-       <div className={styles.footerRight}>
-            <h1>Contact: me@manselfving.com</h1>
-            <div className={styles.footerRightNav}>
-                <h1>ABOUT</h1>
-                <h1>GITHUB</h1>
-                <h1>TWITTER</h1>
-                <h1>WHITEPAPER</h1>
-            </div>
-       </div>
-    </section>
+    <Footer/>
     </main>
   )
 }

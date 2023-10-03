@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 export default function Navbar(){
     return(
-        <main>
+        <div>
             <section id="main" className={styles.navbar}>
                 <div className={styles.navbarContainer}>
                 <Link href="/">
@@ -17,6 +17,6 @@ export default function Navbar(){
                 </Link>
                 </div>
             </section>
-        </main>
+        </div>
     )
 }

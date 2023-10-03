@@ -5,6 +5,7 @@
 "use client"
 import styles from '../styles/dashboard.module.scss'
 import Navbar from '../components/navbar'
+import Footer from '../components/footer'
 import ContractSection from '../components/contractSection'
 import type { AppProps } from "next/app";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
@@ -20,17 +21,18 @@ export default function Home() {
     const phantomWallet = new PhantomWalletAdapter();
 
     return (
-    <main className={styles.body}>
-        <Navbar/>
-        
-        <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={[phantomWallet]}  autoConnect>
-                <WalletModalProvider>
-                    <ContractSection/>
-                </WalletModalProvider>
-            </WalletProvider>
-        </ConnectionProvider>
-        
+    <main >
+        <div className={styles.containerBody}>
+            <Navbar/>
+            <ConnectionProvider endpoint={endpoint}>
+                <WalletProvider wallets={[phantomWallet]}  autoConnect>
+                    <WalletModalProvider>
+                        <ContractSection/>
+                    </WalletModalProvider>
+                </WalletProvider>
+            </ConnectionProvider>
+        </div>
+        <Footer/>
     </main>
 )}
                   

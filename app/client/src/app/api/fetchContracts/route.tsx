@@ -30,7 +30,10 @@ export default async function fetchContracts(
         const message = await program.account.contract.all();
         for (var i = 0; i < message.length; i++){
             if(message[i].account.authority.toString() == walletOfAuthority){
-                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000/dashboard/changecontract", adress: message[i].publicKey.toString()});
+                const date = new Date(message[i].account.timestamp.toNumber() * 1000);
+                var time =  (Math.floor(((message[i].account.timestamp.toNumber() * 1000) % (60 * 24)) / 60)) + ":" + ((message[i].account.timestamp.toNumber() * 1000) % 60) + " " + date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()
+                console.log(message[i].account.timestamp)
+                jsonString.push({t: message[i].account.chainOfOwnership, body: message[i].account.terms, link: "http://127.0.0.1:3000/dashboard/changecontract", adress: message[i].publicKey.toString(), type: message[i].account.storageType, time: time});
             }
         }
         console.log(jsonString.toString())

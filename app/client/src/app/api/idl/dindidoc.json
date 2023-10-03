@@ -29,6 +29,10 @@
         {
           "name": "ownersName",
           "type": "string"
+        },
+        {
+          "name": "storageType",
+          "type": "i32"
         }
       ]
     },
@@ -151,6 +155,10 @@
           {
             "name": "timestamp",
             "type": "i64"
+          },
+          {
+            "name": "storageType",
+            "type": "i32"
           }
         ]
       }

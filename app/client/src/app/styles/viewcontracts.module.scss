@@ -69,6 +69,7 @@
     background-color: rgb(15, 13, 13);
 }
 
+//main page
 .helloContainer{
     width: 100%;
     display: flex;
@@ -79,9 +80,9 @@
 .contentContainer{
     background-color: white;
     border-radius: 8px;
-    padding: 20px;
     //box-shadow: 0 0 10px rgb(247,247,247);
     border: solid 1px rgb(230,230,230);
+    overflow: hidden;
 }
 
 .contentContainerTopInfo{
@@ -104,29 +105,36 @@
     font-weight: 500;
 }
 
-.contentContainerHidden{
-    display: none;
-}
-
-.inputText{
-    width: 300px;
+.tableTitle{
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    color: #777;
-    font-weight: 500;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #f7f7f7;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+    border-bottom: 1px solid #ddd;
 }
 
-.inputBtnInactive{
-    width: 200px;
-    height: 50px;
+.tableContent{
+    position: relative;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
 }
 
-.inputBtnActive{
-    width: 200px;
-    height: 50px;
-    cursor: pointer;
-}
+.tableContent:before {
+    content : "";
+    position: absolute;
+    left    : 50%;
+    transform: translate(-50%);
+    bottom  : 0;
+    height  : 1px;
+    width   : 95%;  /* or 100px */
+    border-bottom:1px solid #ddd;
+    margin-bottom: 1px;
+  }
 
 //dropdown
 .dropdown {

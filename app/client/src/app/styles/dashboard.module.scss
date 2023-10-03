@@ -3,18 +3,22 @@
     src: url('/font.woff2');
 }
 
+.containerBody{
+    display: flex;
+}
+
 //navbar
 .navbar{
-    position: fixed;
-    height: 100%;
+    position: sticky;
+    top: 0px;
+    padding: 20px;
+    height: 100vh;
     width: 240px;
-    display: grid;
-    place-items: center;
 }
 
 .navbarContainer{
-    margin: 20px;
-    position:absolute; top:0; left:0; right:0; bottom:0;
+    position: relative;
+    height: 100%;
     background-color: rgb(15, 13, 13);
     border-radius: 6px;
 }
@@ -27,9 +31,7 @@
 .main{
     //background-color: blue;
     width: calc(100% - 240px);
-    height: 100vh;
-
-    margin-left: 240px;
+    //height: 100vh;
     padding-top: 20px;
 
     padding-left: 20px;
@@ -109,6 +111,7 @@
 .contentContainer{
     width: 100%;
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .contentWrapper{
@@ -119,13 +122,44 @@
     /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
     gap: 30px;
 }
+.textHeaderContainer{
+    display: flex;
+    justify-content: space-between;    
+}
 
 .textHeader{
     font-size: 30px;
     width: 40vw;
 }
+.textHeaderContainer a{
+    text-decoration: none;
+}
+.textHeaderLink{
+    font-weight: 900;
+    font-size: 15px;
+    color: black;
+}
+
+.textHeaderLink:hover{
+    color: blue;
+}
+
+.textHeaderLink:hover::after{
+    content: " >";
+    padding-right: 0px;
+    padding-left: 2px;
+}
+
+.textHeaderLink::after{
+    content: " >";
+    padding-right: 2px;
+    font-size: 13px;
+    transition: all 0.1s ease-in;
+}
+
 
 .infoCard{
+    position: relative;
     height: 180px;
     width: 100%;
     border: solid 1px rgb(230,230,230);
@@ -134,14 +168,61 @@
 
     font-size: small;
     overflow: hidden;
+    text-decoration: none;
 
     background-color: white;
     //background: rgb(1,41,86);
     //background: linear-gradient(35deg, rgba(1,41,86,1) 0%, rgba(4,87,122,1) 100%);
 
     color: black !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .infoCard:hover{
     border-color: blue;
+}
+
+.infoCard:hover .infoCardTop{
+    background-color: #ecf3ff;
+}
+
+.infoCardTop{
+    width: 100%;
+    height: 35px;
+    color: rgb(100 116 139);
+    font-size: 16px;
+    font-weight: 900;
+    background-color: #f8f8f8;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inforCardMiddle{
+    width: 70%;
+    height: 100%;
+    overflow:hidden;
+    font-size: 8px;
+    background-color: rgb(239, 239, 239);
+}
+.inforCardMiddleBlur{
+    filter: blur(2.2px);
+}
+
+.inforCardBottom{
+    width: 100%;
+    height: 30px;
+    //border-top: 1px solid lightgrey ;
+    position: relative;
+    padding: 10px;
+    background-color: #fdfdfd;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

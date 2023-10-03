@@ -7,9 +7,6 @@
 .main{
     //background-color: blue;
     width: calc(100% - 240px);
-    height: 100vh;
-
-    margin-left: 240px;
     padding-top: 20px;
 
     padding-left: 3%;
@@ -84,8 +81,129 @@
     padding: 20px;
     //box-shadow: 0 0 10px rgb(247,247,247);
     border: solid 1px rgb(230,230,230);
+    margin-bottom: 40px;
+}
+.contentContainerInput{
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    //box-shadow: 0 0 10px rgb(247,247,247);
+    border: solid 1px rgb(172, 172, 172);
+    margin-bottom: 40px;
+}
+.contentContainerN{
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    padding-bottom: 40px;
+    //box-shadow: 0 0 10px rgb(247,247,247);
+    border: solid 1px rgb(172, 172, 172);
+    margin-bottom: 40px;
+    display: flex;
 }
 
 .contentContainer div {
     white-space: pre-wrap;
+}
+
+.contentContainerTopInfo{
+    display: flex;
+    height: fit-content;
+}
+
+.textContainer{
+    margin-bottom: 40px;
+}
+.textLabel{
+
+}
+.textLine{
+    min-width: 300px;
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+    font-weight: 500;
+    margin-right: 40px;
+}
+
+.textArea{
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #777;
+    font-weight: 500;
+    overflow: scroll;
+}
+
+.textSmallArea{
+    width: 30vw;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #777;
+    font-weight: 500;
+    margin-right: 40px;
+}
+.inputSeparator{
+    margin-right: 40px;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputText{
+    width: 30vw;
+    padding: 10px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+    font-weight: 500;
+    margin-right: 40px;
+}
+
+.inputTextSmallArea{
+    width: 30vw;
+    height: 100%;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+    font-weight: 500;
+    margin-right: 40px;
+}
+
+.inputBtnInactive{
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+}
+
+.inputBtnActive{
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+.inputBtnDelete{
+    background-color: rgb(254, 128, 128);
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.inputBtnDelete:hover{
+    background-color: rgb(255, 29, 29);
+    color: white;
 }

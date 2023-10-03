@@ -12,6 +12,8 @@ import createContract from "../api/createContract/route";
 import fetchContracts from '../api/fetchContracts/route';
 
 import { useWallet } from '@solana/wallet-adapter-react';
+import BN from 'bn.js';
+import { stringify } from 'querystring';
 
 //redirect to signin if wallet isnt given
 
@@ -27,7 +29,7 @@ export default function ContractSection(){
     const wallet = useAnchorWallet();
     const mounted = useIsMounted();
 
-    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; }[]>([])
+    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
 
     useEffect(() => {
         const fetchData = async (wallet: any) => {
@@ -69,15 +71,33 @@ export default function ContractSection(){
             </div>
 
             <section id="my-contracts" className={styles.contentContainer}>
-                <h1 className={styles.textHeader}>Contracts</h1>
+                <div className={styles.textHeaderContainer}>
+                    <h1 className={styles.textHeader}>Contracts</h1>
+                    <Link href={{pathname: "/dashboard/documents"}} >
+                        <h3 className={styles.textHeaderLink}>See all contracts</h3>
+                    </Link>
+                </div>
                 <div className={styles.contentWrapper}>
                     
                 {contentList && contentList.map((ind) => (
                         <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} >
-                            <div>Detta är ett test där man loopar igenom contentList med ind</div>
-                            <h1 className={styles.h1}>Detta är texten: {ind.body}</h1>
-                            <h2>Detta är värdet: {ind.t}</h2>
-                            <div>adress: {ind.adress}</div>
+                            <div className={styles.infoCardTop}>
+                                {ind.type == 0 ? <div>Text</div>: null } 
+                                {ind.type == 1 ? <div>Encrypted</div>: null } 
+                                {ind.type == 2 ? <div>Hashed</div>: null } 
+                                <div>{ind.adress.substring(0, 4) + "..." + ind.adress.substring(ind.adress.length - 4)}</div>
+                            </div>
+                            <div className={styles.inforCardMiddle}>
+                                <div className={styles.inforCardMiddleBlur}>
+                                    <h1 className={styles.h1}>{ind.body}</h1>
+                                </div>
+                                
+                            </div>
+                            <div className={styles.inforCardBottom}>
+                                <div>{ind.time}</div>
+                            </div>
+
+                            
                         </Link>    
                     ))}
                 </div>    

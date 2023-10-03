@@ -15,7 +15,7 @@ describe("dindidoc", () => {
     const ownersName = "ME"
     const terms = "This is the terms"
     const tx = await program.methods
-      .createContract(terms, ownersName)
+      .createContract(terms, ownersName, 0)
       .accounts({
         contract: contractkey.publicKey,
         authority: provider.wallet.publicKey,
@@ -40,7 +40,7 @@ describe("dindidoc", () => {
     const ownersName = "ME"
     const terms = "This is the terms"
     const tx = await program.methods
-      .createContract(terms, ownersName)
+      .createContract(terms, ownersName, 0)
       .accounts({
         contract: contractkey.publicKey,
         authority: provider.wallet.publicKey,
@@ -125,7 +125,7 @@ describe("dindidoc", () => {
      const ownersName = "ME"
      const terms = "This is the terms"
      const tx = await program.methods
-       .createContract(terms, ownersName)
+       .createContract(terms, ownersName, 0)
        .accounts({
          contract: contractkey.publicKey, 
          authority: provider.wallet.publicKey, 
@@ -166,7 +166,7 @@ describe("dindidoc", () => {
     const ownersName = "ME"
     const terms = "This is the terms"
     const tx = await program.methods
-      .createContract(terms, ownersName)
+      .createContract(terms, ownersName, 0)
       .accounts({
         contract: contractkey.publicKey, 
         authority: provider.wallet.publicKey, 
@@ -200,7 +200,7 @@ describe("dindidoc", () => {
     const terms = "This is the terms"
     const falseSigner = anchor.web3.Keypair.generate();
     const tx = await program.methods
-      .createContract(terms, ownersName)
+      .createContract(terms, ownersName, 0)
       .accounts({
         contract: contractkey.publicKey, 
         authority: falseSigner.publicKey, 

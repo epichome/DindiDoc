@@ -18,6 +18,8 @@ import { useSearchParams, useRouter } from 'next/navigation'
 
 import rsa from 'js-crypto-rsa';
 
+import CryptoJS from 'crypto-js';
+
 //add contract: stor blå satisfying knapp jfr revolut 
 //ren text, kryptrad, hashad
 export default function addContractSection(){
@@ -25,8 +27,10 @@ export default function addContractSection(){
     const [message, setMessage] = useState("");
     const [messageAuthor, setMessageAuthor] = useState("");
     const [messageTime, setMessageTime] = useState(0);
+    const [inputtedType, setInputtedType] = useState("");
     const [inputtedTerms, setInputtedTerms] = useState("");
     const [inputtedOwner, setInputtedOwner] = useState("");
+    const [inputtedPassword, setInputtedPassword] = useState("");
 
     const [accounts, setAccounts] = useState([]);
 
@@ -36,6 +40,13 @@ export default function addContractSection(){
     const router = useRouter();
 
     const searchParams = useSearchParams()
+
+    const [isActive, setIsActive] = useState(false);
+    const [selected, setIsSelected] = useState("Choose type");
+    
+    function handleBlur(e: Event) {
+      setIsActive(false)
+    }
 
     const publicJwk = {kty: 'RSA', n: '...', e: '...'}; // public key
     const privateJwk = {kty: 'RSA', n: '...', e: '...', p: '...', q: '...', dp: '...', dq: '...', qi: '...'}; // paired private key
@@ -58,11 +69,70 @@ export default function addContractSection(){
                         <div className={styles.contentContainerTopInfo}>
                             <div className={styles.contentContainerTopInfoDiv}>
                                 <h1 className={styles.textSubHeader}>Type</h1>
-                                <DropDown/>
+                                <div
+                                    tabIndex={0}
+                                    onBlur={handleBlur}
+                                    >
+                                    <div className={styles.dropdown}>
+                                        <div
+                                        onClick={(e) => {
+                                            setIsActive(!isActive);
+                                        }}
+                                        className={styles.dropdownBtn}
+                                        >
+                                        {selected}
+                                        <span
+                                            className={isActive ? styles.faCaretUp : styles.faCaretDown}
+                                        />
+                                        </div>
+                                        <div
+                                        className={styles.dropdownContent}
+                                        style={{ display: isActive ? "block" : "none" }}
+                                        >
+                                        <div
+                                            onClick={(e) => {
+                                            setIsSelected(e.target.textContent);
+                                            setIsActive(!isActive);
+                                            }}
+                                            className={styles.item}
+                                        >
+                                            Text
+                                        </div>
+                                        <div
+                                            className={styles.item}
+                                            onClick={(e) => {
+                                            setIsSelected(e.target.textContent);
+                                            setIsActive(!isActive);
+                                            }}
+                                        >
+                                            Encrypted
+                                        </div>
+                                        <div
+                                            className={styles.item}
+                                            onClick={(e) => {
+                                            setIsSelected(e.target.textContent);
+                                            setIsActive(!isActive);
+                                            }}
+                                        >
+                                            Hashed
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={selected == "Encrypted" ? styles.contentContainerTopInfoDiv: styles.contentContainerHidden}>
+                                <h1 className={styles.textSubHeader}>Password</h1>
+                                <input 
+                                    className={styles.inputText}
+                                    type="text" 
+                                    onChange={(e) => setInputtedPassword(e.target.value)}
+                                    value={inputtedPassword}
+                                />
                             </div>
                             <div className={styles.contentContainerTopInfoDiv}>
                                 <h1 className={styles.textSubHeader}>Owners name</h1>
                                 <input 
+                                    className={styles.inputText}
                                     type="text" 
                                     onChange={(e) => setInputtedOwner(e.target.value)}
                                     value={inputtedOwner}
@@ -79,16 +149,53 @@ export default function addContractSection(){
                         
                         <h1 className={styles.textSubHeader}>Create Contract</h1>
                         <div >
-                            
                             <button
+                            className={!inputtedOwner || !inputtedTerms ? styles.inputBtnInactive : styles.inputBtnActive}
                             disabled={!inputtedOwner || !inputtedTerms}
                             onClick={async () => {
+                                var intype = 0;
+                                var inTerms = "";
+                                var inOwner = "";
+                                if (selected == "Hashed"){
+                                    intype = 2;
+                                    //set information to Hashed
+                                    var hashedInput = CryptoJS.SHA256(inputtedOwner + inputtedTerms).toString(CryptoJS.enc.Hex);
+                                    inTerms = hashedInput;
+                                    inOwner = ""; 
+                                }else if (selected == "Encrypted"){
+                                    intype = 1;
+                                    //set information to Encrypted                                     
+                                    var key = CryptoJS.enc.Utf8.parse(inputtedPassword);
+                                    var iv = CryptoJS.enc.Utf8.parse(inputtedPassword);
+                                    var inOwner = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(inputtedOwner), key,
+                                        {
+                                            keySize: 128 / 8,
+                                            iv: iv,
+                                            mode: CryptoJS.mode.CBC,
+                                            padding: CryptoJS.pad.Pkcs7
+                                        }).toString();
+                                    var inTerms = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(inputtedTerms), key,
+                                        {
+                                            keySize: 128 / 8,
+                                            iv: iv,
+                                            mode: CryptoJS.mode.CBC,
+                                            padding: CryptoJS.pad.Pkcs7
+                                        }).toString();
+                                }else {
+                                    intype = 0
+                                    //set information to Text
+                                    inTerms = inputtedTerms;
+                                    inOwner = inputtedOwner;
+                                }
+
                                 const contract = await createContract(
-                                inputtedOwner,
-                                inputtedTerms,
+                                inOwner,
+                                inTerms,
+                                intype,
                                 wallet,
-                                messageAccount
+                                messageAccount,
                                 );
+
                                 if (contract) {
                                     setMessage(contract.terms.toString());
                                     setMessageAuthor(contract.chainOfOwnership.toString());
@@ -99,7 +206,7 @@ export default function addContractSection(){
                                 }
                             }}
                             >
-                            Create a Message!
+                            Create contract
                             </button>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 import styles from '../../styles/dashboard.module.scss'
 import Navbar from '../../components/navbar'
 import Footer from '../../components/footer'
-import ChangeContractSection from '../../components/changeContracSection'
+import ViewContractsSection from '../../components/viewcontracts'
 import type { AppProps } from "next/app";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import {
@@ -22,7 +22,7 @@ export default function Home() {
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={[phantomWallet]} autoConnect>
                     <WalletModalProvider>
-                        <ChangeContractSection/>
+                        <ViewContractsSection/>
                     </WalletModalProvider>
                 </WalletProvider>
             </ConnectionProvider>

@@ -29,6 +29,10 @@ export type Dindidoc = {
         {
           "name": "ownersName",
           "type": "string"
+        },
+        {
+          "name": "storageType",
+          "type": "i32"
         }
       ]
     },
@@ -151,6 +155,10 @@ export type Dindidoc = {
           {
             "name": "timestamp",
             "type": "i64"
+          },
+          {
+            "name": "storageType",
+            "type": "i32"
           }
         ]
       }
@@ -195,6 +203,10 @@ export const IDL: Dindidoc = {
         {
           "name": "ownersName",
           "type": "string"
+        },
+        {
+          "name": "storageType",
+          "type": "i32"
         }
       ]
     },
@@ -317,6 +329,10 @@ export const IDL: Dindidoc = {
           {
             "name": "timestamp",
             "type": "i64"
+          },
+          {
+            "name": "storageType",
+            "type": "i32"
           }
         ]
       }

@@ -16,6 +16,7 @@ import transferContract from '../api/transferContract/route'
 import deleteContract from '../api/deleteContract/route'
 
 import { set } from "@coral-xyz/anchor/dist/cjs/utils/features";
+import { TRUE } from "sass";
 
 async function getData (contractAddress: string, wallet: any){
     const contract = await fetchContractData(
@@ -75,68 +76,103 @@ export default function addContractSection(){
             </div>
             <section className={styles.contentContainer}>
                 <h1 className={styles.textHeader}>Contract Info</h1>
-                <div>Adress: {searchParams.get('adress')} </div>
-                <div>Owner: {auth} {"\n"}</div>
-                <div>Terms: {terms}</div>
-                <div>Notes: {note}</div>
+                <div className={styles.contentContainerTopInfo}>
+                    <div className={styles.textContainer}>
+                        <div className={styles.textLabel}>Adress:</div>
+                        <div className={styles.textLine}>{searchParams.get('adress')}</div>
+                    </div>
+                    <div className={styles.textContainer}>
+                        <div className={styles.textLabel}>Owner:</div>
+                        <div className={styles.textLine}>{auth}</div>
+                    </div>
+                </div>
+                <div className={styles.textContainer}>
+                    <div className={styles.textLabel}>Terms: </div>
+                    <div className={styles.textArea}>{terms}</div>
+                </div>
+                <div className={styles.contentContainerTopInfo}>
+                    <div className={styles.textContainer}>
+                        <div className={styles.textLabel}>Notes: </div>
+                        <div className={styles.textSmallArea}>{note}</div>
+                    </div>
+                    <div className={styles.textContainer}>
+                        <div className={styles.textLabel}>ChainOfOwners:</div>
+                        <div className={styles.textSmallArea}>{owner}</div>
+                    </div>
+                </div>
+                
                 <div>Signers: {signers}</div>
-                <div>ChainOfOwners: {owner}</div>
+                
 
             </section>
-            <section className={styles.contentContainer}>
-                <h1 className={styles.textHeader}>Add Note</h1>
-                {wallet && (
-                    <div >
-                        <textarea
-                        placeholder="Write Your Message!"
-                        onChange={(e) => setInputtedMessage(e.target.value)}
-                        value={inputtedMessage}
-                        />
-                        <button
-                        disabled={!inputtedMessage}
-                        onClick={async () => {
-                            const contract = await addNote(inputtedMessage, wallet, contractAddress)
-                        }}
-                        >
-                        Add Note!
-                        </button>
-                    </div>
-                )}   
-            </section>
-            <section className={styles.contentContainer}>
+            <section className={styles.contentContainerInput}>
                 <h1 className={styles.textHeader}>Sign Contract</h1>
             </section>
-            <section className={styles.contentContainer}>
+            <section className={styles.contentContainerN}>
+                <div className={styles.inputSeparator}>
+                    <h1 className={styles.textHeader}>Add Note</h1>
+                    {wallet && (
+                        <div className={styles.inputContainer}>
+                            <textarea
+                            placeholder="Write Your Message!"
+                            onChange={(e) => setInputtedMessage(e.target.value)}
+                            value={inputtedMessage}
+                            className={styles.inputTextSmallArea}
+                            />
+                            <button
+                            disabled={!inputtedMessage}
+                            className={!inputtedMessage ? styles.inputBtnInactive : styles.inputBtnActive}
+                            onClick={async () => {
+                                const contract = await addNote(inputtedMessage, wallet, contractAddress)
+                                if (contract) {
+                                    window.location.reload()
+                                }
+                            }}
+                            >
+                            Add Note!
+                            </button>
+                        </div>
+                    )}   
+                </div>
+                <div>
                 <h1 className={styles.textHeader}>Transfer Contract</h1>
-                {wallet && (
-                    <div >
-                        <textarea
-                        placeholder="Pubkey to the new owner"
-                        onChange={(e) => setTransferTo(e.target.value)}
-                        value={transferTo}
-                        />
-                        <input 
-                        type="Name of the new owner" 
-                        onChange={(e) => setNewOwner(e.target.value)}
-                        value={newOwner}
-                        />
-                        
-                        <button
-                        disabled={!transferTo}
-                        onClick={async () => {
-                            const contract = await transferContract(transferTo, newOwner, wallet, contractAddress)
-                        }}
-                        >
-                        Transfer contract!
-                        </button>
-                    </div>
-                )}   
+                    {wallet && (
+                        <div className={styles.inputContainer}>
+                            <textarea
+                            placeholder="Pubkey to the new owner"
+                            onChange={(e) => setTransferTo(e.target.value)}
+                            value={transferTo}
+                            className={styles.inputText}
+                            />
+                            <input 
+                            placeholder="Name of the new owner" 
+                            onChange={(e) => setNewOwner(e.target.value)}
+                            value={newOwner}
+                            className={styles.inputText}
+                            />
+                            
+                            <button
+                            disabled={!transferTo || !newOwner}
+                            className={!transferTo || !newOwner ? styles.inputBtnInactive : styles.inputBtnActive}
+                            onClick={async () => {
+                                const contract = await transferContract(transferTo, newOwner, wallet, contractAddress)
+                                if (contract) {
+                                    window.location.reload()
+                                }
+                            }}
+                            >
+                            Transfer contract!
+                            </button>
+                        </div>
+                    )}   
+                </div>
             </section>
-            <section className={styles.contentContainer}>
+            <section className={styles.contentContainerInput}>
                 <h1 className={styles.textHeader}>Delete Contract</h1>
                 {wallet && (
                     <div >
                         <button
+                        className={styles.inputBtnDelete}
                         onClick={async () => {
                             const contract = await deleteContract(wallet, contractAddress)
                             if (contract) {
