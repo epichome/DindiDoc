@@ -29,7 +29,7 @@ export default function ContractSection(){
     const wallet = useAnchorWallet();
     const mounted = useIsMounted();
 
-    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
+    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: string}[]>([])
 
     useEffect(() => {
         const fetchData = async (wallet: any) => {
@@ -38,11 +38,9 @@ export default function ContractSection(){
                 wallet,
                 );
                 if (contract) {
-                    console.log(contract)
                     setContentList(contract)
                 }
           }
-        console.log(wallet?.publicKey.toString())
         if (wallet){
             fetchData(wallet);
         }else{
@@ -54,13 +52,7 @@ export default function ContractSection(){
         <main className={styles.main}>
             <section id="searchbar" className={styles.searchbar}>
                 <div className={styles.searchbarInput}>
-                    <Image
-                        className={styles.navbarImage}
-                        src="/images/search.png"
-                        width={18}
-                        height={18}
-                        alt="Picture of the author"
-                    />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m20 20-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9 7 7 0 0 0 9.9 9.9z"/></svg>
                     <input type="text" placeholder='Search after contract'></input>
                     <div></div>
                 </div>
@@ -71,47 +63,50 @@ export default function ContractSection(){
             </div>
 
             <section id="my-contracts" className={styles.contentContainer}>
-                <div className={styles.textHeaderContainer}>
-                    <h1 className={styles.textHeader}>Contracts</h1>
-                    <Link href={{pathname: "/dashboard/documents"}} >
-                        <h3 className={styles.textHeaderLink}>See all contracts</h3>
-                    </Link>
-                </div>
-                <div className={styles.contentWrapper}>
-                    
-                {contentList && contentList.map((ind) => (
-                        <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} >
-                            <div className={styles.infoCardTop}>
-                                {ind.type == 0 ? <div>Text</div>: null } 
-                                {ind.type == 1 ? <div>Encrypted</div>: null } 
-                                {ind.type == 2 ? <div>Hashed</div>: null } 
-                                <div>{ind.adress.substring(0, 4) + "..." + ind.adress.substring(ind.adress.length - 4)}</div>
-                            </div>
-                            <div className={styles.inforCardMiddle}>
-                                <div className={styles.inforCardMiddleBlur}>
-                                    <h1 className={styles.h1}>{ind.body}</h1>
+                {wallet ? 
+                <div>
+                    <div className={styles.textHeaderContainer}>
+                        <h1 className={styles.textHeader}>Contracts</h1>
+                        <Link href={{pathname: "/dashboard/contracts"}} >
+                            <h3 className={styles.textHeaderLink}>See all contracts</h3>
+                        </Link>
+                    </div>
+                    <div className={styles.contentWrapper}>
+                        {contentList && contentList.map((ind) => (
+                            <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} >
+                                <div className={styles.infoCardTop}>
+                                    {ind.type == 0 ? <div>Text</div>: null } 
+                                    {ind.type == 1 ? <div>Encrypted</div>: null } 
+                                    {ind.type == 2 ? <div>Hashed</div>: null } 
+                                    <div>{ind.adress.substring(0, 4) + "..." + ind.adress.substring(ind.adress.length - 4)}</div>
                                 </div>
+                                <div className={styles.inforCardMiddle}>
+                                    <div className={styles.inforCardMiddleBlur}>
+                                        <h1 className={styles.h1}>{ind.body}</h1>
+                                    </div>
+                                    
+                                </div>
+                                <div className={styles.inforCardBottom}>
+                                    <div>{ind.time}</div>
+                                </div>
+
                                 
-                            </div>
-                            <div className={styles.inforCardBottom}>
-                                <div>{ind.time}</div>
-                            </div>
-
-                            
+                            </Link>    
+                        ))}
+                    </div>    
+                </div>: <div>Select wallet to Continue</div>}
+            </section>
+            {wallet &&(
+                <section id="create-contract" className={styles.contentContainer}>
+                    <h1 className={styles.textHeader}>Create New Contract</h1>
+                    <div className={styles.contentWrapper}>
+                        <Link href={{pathname: "/dashboard/newcontract"}} className={styles.infoCardAdd}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 12h7m7 0h-7m0 0V5m0 7v7"/></svg>
                         </Link>    
-                    ))}
-                </div>    
-            </section>
+                    </div>
 
-            <section id="create-contract" className={styles.contentContainer}>
-                <h1 className={styles.textHeader}>Create New Contract</h1>
-                <div className={styles.contentWrapper}>
-                    <Link href={{pathname: "/dashboard/newcontract"}} className={styles.infoCard}>
-                    
-                    </Link>    
-                </div>
-
-            </section>
+                </section>
+            )}
         </main>
     )
 }

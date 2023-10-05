@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect} from "react"
+import { ChangeEvent, useState, useEffect} from "react"
 import DropDown from './dropdown'
 
 import { Keypair } from "@solana/web3.js";
@@ -13,6 +13,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 
 import styles from '../styles/viewcontracts.module.scss'
 import Link from 'next/link';
+import Image from 'next/image'
 
 import { useSearchParams, useRouter } from 'next/navigation'
 
@@ -36,6 +37,54 @@ export default function addContractSection(){
 
     const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
 
+    const [isActive, setIsActive] = useState(false);
+    const [selected, setIsSelected] = useState("All types");
+    function handleBlur(e: Event) {
+        setIsActive(false)
+    }
+
+    const[filterNameVar, setFilterNameVar] = useState("")
+    const[filterTypeVar, setFilterTypeVar] = useState("")
+    const [contentListFiltered, setContentListFiltered] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
+
+    function filterName(){
+        var filteredJSON = []
+        var typeValue = 0
+        if (selected == "Encrypted"){
+            typeValue = 1
+        }
+        if (selected == "Hashed"){
+            typeValue = 2
+        }
+        if(filterNameVar !== ""){
+            for(var i in contentList){
+                if (selected !== "All types"){
+                    if (contentList[i].adress.includes(filterNameVar) && contentList[i].type == typeValue){
+                        filteredJSON.push(contentList[i])
+                    } 
+                }else{
+                    if (contentList[i].adress.includes(filterNameVar)){
+                        filteredJSON.push(contentList[i])
+                    }
+                }
+            }
+            setContentListFiltered(filteredJSON)
+        } else if (selected !== "All types"){
+            for(var i in contentList){
+                if (contentList[i].type == typeValue){
+                    filteredJSON.push(contentList[i])
+                } 
+            }
+            setContentListFiltered(filteredJSON)
+        } else{
+            setContentListFiltered(contentList)       
+        }
+    }
+    useEffect(() => {
+        // This function will run when filterNameVar changes
+        filterName();
+      }, [filterNameVar, selected]); // Add filterNameVar as a dependency
+
     useEffect(() => {
         const fetchData = async (wallet: any) => {
             const contract = await fetchContracts(
@@ -43,11 +92,10 @@ export default function addContractSection(){
                 wallet,
                 );
                 if (contract) {
-                    console.log(contract)
                     setContentList(contract)
+                    setContentListFiltered(contract)
                 }
           }
-        console.log(wallet?.publicKey.toString())
         if (wallet){
             fetchData(wallet);
         }else{
@@ -67,7 +115,79 @@ export default function addContractSection(){
                 <h1>Your contracts</h1>
             </div>
             <section className={styles.contentContainerFilter}>
+                <div className={styles.searchbarInput}>
+                    <Image
+                        className={styles.navbarImage}
+                        src="/images/search.png"
+                        width={18}
+                        height={18}
+                        alt="Picture of the author"
+                    />
+                    <input type="text" placeholder='Filter after name' onChange={(e) => {
+                        setFilterNameVar(e.target.value)
+                    }}></input>
+                </div>
 
+                <div tabIndex={0} onBlur={handleBlur}>
+                    <div className={styles.dropdown}>
+                        <div
+                        onClick={(e) => {
+                            setIsActive(!isActive);
+                        }}
+                        className={styles.dropdownBtn}
+                        >
+                        {selected}
+                        <span
+                            className={isActive ? styles.faCaretUp : styles.faCaretDown}
+                        />
+                        </div>
+                        <div
+                        className={styles.dropdownContent}
+                        style={{ display: isActive ? "block" : "none" }}
+                        >
+                        <div
+                            onClick={(e) => {
+                            setIsSelected(e.target.textContent);
+                            setIsActive(!isActive);
+                            filterName
+                            }}
+                            className={styles.item}
+                        >
+                            All types
+                        </div>    
+                        <div
+                            onClick={(e) => {
+                            setIsSelected(e.target.textContent);
+                            setIsActive(!isActive);
+                            filterName
+                            }}
+                            className={styles.item}
+                        >
+                            Text
+                        </div>
+                        <div
+                            className={styles.item}
+                            onClick={(e) => {
+                            setIsSelected(e.target.textContent);
+                            setIsActive(!isActive);
+                            filterName
+                            }}
+                        >
+                            Encrypted
+                        </div>
+                        <div
+                            className={styles.item}
+                            onClick={(e) => {
+                            setIsSelected(e.target.textContent);
+                            setIsActive(!isActive);
+                            filterName
+                            }}
+                        >
+                            Hashed
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             {wallet && (
                 <section id="my-contracts" className={styles.contentContainer}>
@@ -79,7 +199,7 @@ export default function addContractSection(){
                         <p>Edit</p>
                     </div>
                     <div>
-                        {contentList && contentList.map((ind) => (
+                        {contentList && contentListFiltered.map((ind) => (
                             <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.tableContent} >
                                 <div>{ind.adress.substring(0, 4) + "..." + ind.adress.substring(ind.adress.length - 4)}</div>
                                 

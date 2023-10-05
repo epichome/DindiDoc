@@ -32,6 +32,85 @@ describe("dindidoc", () => {
     console.log(contractAccount.terms)
   });
 
+  it("Add signature", async () => {
+     //create contract
+     console.log("Creating contract")
+     const contractkey = anchor.web3.Keypair.generate();
+     const ownersName = "ME"
+     const terms = "This is the terms"
+     const tx = await program.methods
+       .createContract(terms, ownersName, 0)
+       .accounts({
+         contract: contractkey.publicKey, 
+         authority: provider.wallet.publicKey, 
+         systemProgram: anchor.web3.SystemProgram.programId,
+       })
+       .signers([contractkey])
+       .rpc();
+ 
+     const contractAccount = await program.account.contract.fetch(
+      contractkey.publicKey
+     );
+     console.log(contractAccount.authority)
+     console.log(contractAccount.terms)
+
+    //update note
+    console.log("Add signature 1")
+    var signer = 0
+    var proof = "https/test.com"
+    await program.methods
+      .signContract(signer, proof)
+      .accounts({
+        contract: contractkey.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc()
+
+     //update note 1 again 
+     console.log("Add signature 1")
+     signer = 0
+     proof = "https/test.com/false"
+     await program.methods
+       .signContract(signer, proof)
+       .accounts({
+         contract: contractkey.publicKey,
+         systemProgram: anchor.web3.SystemProgram.programId,
+       })
+       .rpc()
+
+    //update signer 2 
+    console.log("Add signature 1")
+    signer = 1
+    proof = "https/test.com"
+    await program.methods
+      .signContract(signer, proof)
+      .accounts({
+        contract: contractkey.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc()
+
+    //update signer 2 again 
+    console.log("Add signature 1")
+    signer = 1
+    proof = "https/test.com/false"
+    await program.methods
+      .signContract(signer, proof)
+      .accounts({
+        contract: contractkey.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc()
+
+    const contractAccountChange = await program.account.contract.fetch(
+      contractkey.publicKey
+    );
+
+    console.log(contractAccountChange.signature1)
+    console.log(contractAccountChange.signature2)
+  });
+
+
   it("Transfer contract!", async () => {
     // Add your test here.
     //create contract

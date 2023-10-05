@@ -12,7 +12,7 @@ export default function Footer() {
                     width={50}
                     height={50}
                     alt="Picture of the author"
-                    id='footer-left-img'
+                    className={styles.footerLeftImg}
                     />
                 </div>
             <div className={styles.footerRight}>

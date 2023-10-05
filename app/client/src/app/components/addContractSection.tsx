@@ -30,6 +30,7 @@ export default function addContractSection(){
     const [inputtedType, setInputtedType] = useState("");
     const [inputtedTerms, setInputtedTerms] = useState("");
     const [inputtedOwner, setInputtedOwner] = useState("");
+
     const [inputtedPassword, setInputtedPassword] = useState("");
 
     const [accounts, setAccounts] = useState([]);
@@ -47,6 +48,18 @@ export default function addContractSection(){
     function handleBlur(e: Event) {
       setIsActive(false)
     }
+
+    const handleDownloadClick = () => {
+        var fileContent = {Terms: inputtedTerms, Signer1: "", Signer2: "", Notes: "", Owner: inputtedOwner}
+        const blob = new Blob([JSON.stringify(fileContent)], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Document";
+        a.click();
+        URL.revokeObjectURL(url);
+        
+      };
 
     const publicJwk = {kty: 'RSA', n: '...', e: '...'}; // public key
     const privateJwk = {kty: 'RSA', n: '...', e: '...', p: '...', q: '...', dp: '...', dq: '...', qi: '...'}; // paired private key
@@ -148,6 +161,8 @@ export default function addContractSection(){
                         />
                         
                         <h1 className={styles.textSubHeader}>Create Contract</h1>
+                        {selected == "Hashed" ? <button onClick={handleDownloadClick}>Download .txt File</button>: null}
+
                         <div >
                             <button
                             className={!inputtedOwner || !inputtedTerms ? styles.inputBtnInactive : styles.inputBtnActive}
@@ -159,14 +174,15 @@ export default function addContractSection(){
                                 if (selected == "Hashed"){
                                     intype = 2;
                                     //set information to Hashed
-                                    var hashedInput = CryptoJS.SHA256(inputtedOwner + inputtedTerms).toString(CryptoJS.enc.Hex);
+                                    var hashedInput = CryptoJS.SHA256(inputtedTerms).toString(CryptoJS.enc.Hex);
                                     inTerms = hashedInput;
-                                    inOwner = ""; 
+                                    var hashedOwner = CryptoJS.SHA256(inputtedOwner).toString(CryptoJS.enc.Hex);
+                                    inOwner = hashedOwner; 
                                 }else if (selected == "Encrypted"){
                                     intype = 1;
                                     //set information to Encrypted                                     
                                     var key = CryptoJS.enc.Utf8.parse(inputtedPassword);
-                                    var iv = CryptoJS.enc.Utf8.parse(inputtedPassword);
+                                    var iv = CryptoJS.enc.Hex.parse(inputtedPassword);
                                     var inOwner = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(inputtedOwner), key,
                                         {
                                             keySize: 128 / 8,

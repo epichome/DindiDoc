@@ -16,8 +16,9 @@
 .main{
     background-color: white;
     width: 100vw;
-    overflow-y: overlay;
-    overflow-x: hidden;
+    height: 100vh;
+    //overflow-y: overlay;
+    //overflow-x: hidden;
     
 }
 //Scrollbar 
@@ -67,7 +68,8 @@
     height: 100%;
 }
 .headerLeft img{
-    height: 25%;
+    height: 40px;
+    width: 50px;
     mix-blend-mode: difference;
 }
 .headerRight{
@@ -122,7 +124,6 @@
     position: absolute;
     top: 40vh;
     left: 10vw;
-    
 }
 .landingTxt h1{
     font-size: 150px;
@@ -135,15 +136,16 @@
     background-color: transparent !important;
 }
 //about 
-.about{
+.bodyPosition{
     position: relative;
     top: -110vh;
-    //width: 100vw;
-    height: 100vw;
+}
+.about{
+    position: relative;
     background-color: white;
 
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
 
     //border-top: gray solid 1px;
     
@@ -153,8 +155,9 @@
 }
 .textTitle{
     font-size: 100px;
-    width: 50vw;
+    width: 750px;
 }
+
 .textLeftFloat{
     width: 100%;
     height: fit-content;
@@ -170,8 +173,21 @@
     width: 40vw;
     float: left;
 }
+.textSubKHeader{
+    font-size: 28px;
+    
+}
+.textKMain{
+    font-size: 18px;
+    line-height: 25px;
+    width: 65%;
+}
+
 .textMain{
+    font-size: 18px;
+    line-height: 25px;
     padding-top: 30px;
+    width: 75%;
 }
 
 .imageLarge{
@@ -182,6 +198,71 @@
     width: 90%;
     filter: grayscale(80%);
 }
+
+.imageSection{
+    width: 100vw;
+    padding: 5vw;
+}
+
+.imageContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.imageSmallL{
+    width: 65%;
+    height: 700px;
+    object-fit: cover;
+    //filter: grayscale(40%);
+}
+
+.imageSmallR{
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    filter: grayscale(90%);
+}
+
+.aboutFunction{
+    margin-top: 100px;
+    background-color: rgb(248 248 248);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.aboutFunctionTitle{
+    width: 70%;
+    margin-bottom: 30px;
+    font-size: 30px;
+    border-bottom: 1px solid #ddd;
+}
+.aboutFunctionContainer{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.aboutFunctionContent{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 235px;
+    height: 300px;
+}
+
+.aboutFunctionContent svg{
+    width: 80px;
+}
+
+.aboutFunctionHeader{
+    font-size: 23px;
+}
+
 
 .footer{
     background-color: rgb(15, 13, 13);
@@ -195,7 +276,8 @@
     width: 50%;
 }
 .footerLeftImg{
-    height: 70px;
+    height: 40px;
+    width: 50px;
 }
 .footerRight{
     width: 50%;
@@ -213,4 +295,43 @@
 .footerRightNav h1:hover{
     cursor: pointer;
     text-decoration: underline;
+}
+
+//mobile 
+@media (max-width: 1020px) {
+    .landingTxt h1{
+        font-size: 100px;
+    }
+    .landingTxt p{
+        font-size: 20px;
+    }
+    .textTitle{
+        font-size: 50px;
+        width: 400px;
+    }
+    .textSubheader{
+        font-size: 20px;
+    }
+    .textHeader{
+        font-size: 35px;
+    }
+    .textSubKHeader{
+        font-size: 25px;
+    }
+    .textKMain{
+        font-size: 14px;
+    }
+
+    .aboutFunctionContainer{
+
+    }
+
+    .imageSmallL{
+        width: 65%;
+        height: 400px;
+    }
+    .imageSmallR{
+        width: 150px;
+        height: 225px;
+    }
 }

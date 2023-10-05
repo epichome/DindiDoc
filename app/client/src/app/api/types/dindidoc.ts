@@ -37,6 +37,36 @@ export type Dindidoc = {
       ]
     },
     {
+      "name": "signContract",
+      "accounts": [
+        {
+          "name": "contract",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "signer",
+          "type": "u8"
+        },
+        {
+          "name": "proof",
+          "type": "string"
+        }
+      ]
+    },
+    {
       "name": "transferContract",
       "accounts": [
         {
@@ -207,6 +237,36 @@ export const IDL: Dindidoc = {
         {
           "name": "storageType",
           "type": "i32"
+        }
+      ]
+    },
+    {
+      "name": "signContract",
+      "accounts": [
+        {
+          "name": "contract",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "signer",
+          "type": "u8"
+        },
+        {
+          "name": "proof",
+          "type": "string"
         }
       ]
     },
