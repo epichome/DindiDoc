@@ -73,7 +73,7 @@ export default function ContractSection(){
                     </div>
                     <div className={styles.contentWrapper}>
                         {contentList && contentList.map((ind) => (
-                            <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} >
+                            <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.infoCard} key={ind.adress} >
                                 <div className={styles.infoCardTop}>
                                     {ind.type == 0 ? <div>Text</div>: null } 
                                     {ind.type == 1 ? <div>Encrypted</div>: null } 

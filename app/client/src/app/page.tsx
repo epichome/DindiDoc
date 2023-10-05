@@ -95,7 +95,7 @@ export default function Home() {
                 />
 
             <h2 className={styles.textHeader}>Digital Original Documents in short</h2>
-            <h2 className={styles.textMain}>Digital Original Documents is electronic documents that have been uniquely linked to a blockchain network and satisfies the requirments of the law to be considered original. A blockchain is a decentralized and immutable ledger that records transactions and data across a network of computers. When a document is stored on a blockchain, it is encrypted and timestamped to ensure its integrity and security. This process creates a tamper-proof and transparent record of the document's existence and content at a specific point in time.</h2>
+            <h2 className={styles.textMain}>Digital Original Documents is electronic documents that have been uniquely linked to a blockchain network and satisfies the requirments of the law to be considered original. A blockchain is a decentralized and immutable ledger that records transactions and data across a network of computers. When a document is stored on a blockchain, it is encrypted and timestamped to ensure its integrity and security. This process creates a tamper-proof and transparent record of the document&apos;s existence and content at a specific point in time.</h2>
         
             <h2 className={styles.textHeader}>Key Characteristics</h2>
             <h2 className={styles.textSubKHeader}>Immutability</h2>
@@ -132,7 +132,7 @@ export default function Home() {
               <div className={styles.aboutFunctionContent}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.603c1.667-1.271 5.5-2.86 9 0V19c-3.5-2.86-7.333-1.271-9 0m0-12.397c-1.667-1.271-5.5-2.86-9 0V19c3.5-2.86 7.333-1.271 9 0m0-12.397V19"/></svg>
                 <p className={styles.aboutFunctionHeader}>Designed to comply with exisiting legislation</p>
-                <p className={styles.aboutFunctionText}>DindiDoc is designed to comply with UNCITRAL's MLETR, dDOC specifications from ITFA's DNI initiative, as well as the Swedish case law on Digital Original promisary notes.</p>
+                <p className={styles.aboutFunctionText}>DindiDoc is designed to comply with UNCITRAL&apos;s MLETR, dDOC specifications from ITFA&apos;s DNI initiative, as well as the Swedish case law on Digital Original promisary notes.</p>
               </div>
               <div className={styles.aboutFunctionContent}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 16v-5m4 5V8m4 8v-2M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6M19 2v3m0 3V5m0 0h3m-3 0h-3"/></svg>
