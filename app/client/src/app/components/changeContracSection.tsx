@@ -59,7 +59,7 @@ function checkOriginality(){
 
 }
 
-export default function addContractSection(){
+export default function ChangeContractSection(){
     const [messageAccount, _] = useState(Keypair.generate());
     const [terms, setTerms] = useState<string>();
     const [auth, setAuth] = useState<string>();

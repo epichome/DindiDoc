@@ -23,7 +23,7 @@ import CryptoJS from 'crypto-js';
 
 //add contract: stor blå satisfying knapp jfr revolut 
 //ren text, kryptrad, hashad
-export default function addContractSection(){
+export default function ViewContractSection(){
     const [messageAccount, _] = useState(Keypair.generate());
     const [message, setMessage] = useState("");
     const [messageAuthor, setMessageAuthor] = useState("");
