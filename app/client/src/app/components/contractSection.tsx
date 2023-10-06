@@ -12,8 +12,6 @@ import createContract from "../api/createContract/funct";
 import fetchContracts from '../api/fetchContracts/funct';
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import BN from 'bn.js';
-import { stringify } from 'querystring';
 
 //redirect to signin if wallet isnt given
 
