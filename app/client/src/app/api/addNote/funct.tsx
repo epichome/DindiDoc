@@ -41,7 +41,6 @@ export default async function AddNote(
       const message = await program.account.contract.fetch(
         contractAccount
       );
-      console.log("contractAccount Data: ", message);
       return message;
     } catch (err) {
       console.log("Transaction error: ", err);

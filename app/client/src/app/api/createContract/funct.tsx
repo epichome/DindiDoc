@@ -29,7 +29,6 @@ export default async function CreateContract(
     ) as Program<Dindidoc>;
   
     try {
-      console.log(terms)
       /* interact with the program via rpc */
       const txn = await program.methods
         .createContract(terms, ownersName, inputType)
@@ -44,7 +43,6 @@ export default async function CreateContract(
       const message = await program.account.contract.fetch(
         contractAccount.publicKey
       );
-      console.log("contractAccount Data: ", message);
       return message;
     } catch (err) {
       console.log("Transaction error: ", err);
