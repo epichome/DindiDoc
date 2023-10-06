@@ -35,17 +35,17 @@ export default function ViewContractSection(){
     const wallet = useAnchorWallet();
     const mounted = useIsMounted();
 
-    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
+    const [contentList, setContentList] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: string}[]>([])
 
     const [isActive, setIsActive] = useState(false);
     const [selected, setIsSelected] = useState("All types");
-    function handleBlur(e: Event) {
+    function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
         setIsActive(false)
     }
 
     const[filterNameVar, setFilterNameVar] = useState("")
     const[filterTypeVar, setFilterTypeVar] = useState("")
-    const [contentListFiltered, setContentListFiltered] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: number}[]>([])
+    const [contentListFiltered, setContentListFiltered] = useState<{ t: string; body: string; link: string; adress: string; type: number; time: string}[]>([])
 
     function filterName(){
         var filteredJSON = []
@@ -147,7 +147,8 @@ export default function ViewContractSection(){
                         >
                         <div
                             onClick={(e) => {
-                            setIsSelected(e.target.textContent);
+                            const target = e.target as HTMLElement;
+                            setIsSelected(target.textContent || "");
                             setIsActive(!isActive);
                             filterName
                             }}
@@ -157,7 +158,8 @@ export default function ViewContractSection(){
                         </div>    
                         <div
                             onClick={(e) => {
-                            setIsSelected(e.target.textContent);
+                            const target = e.target as HTMLElement;
+                            setIsSelected(target.textContent || "");
                             setIsActive(!isActive);
                             filterName
                             }}
@@ -168,7 +170,8 @@ export default function ViewContractSection(){
                         <div
                             className={styles.item}
                             onClick={(e) => {
-                            setIsSelected(e.target.textContent);
+                            const target = e.target as HTMLElement;
+                            setIsSelected(target.textContent || "");
                             setIsActive(!isActive);
                             filterName
                             }}
@@ -178,7 +181,8 @@ export default function ViewContractSection(){
                         <div
                             className={styles.item}
                             onClick={(e) => {
-                            setIsSelected(e.target.textContent);
+                            const target = e.target as HTMLElement;
+                            setIsSelected(target.textContent || "");
                             setIsActive(!isActive);
                             filterName
                             }}

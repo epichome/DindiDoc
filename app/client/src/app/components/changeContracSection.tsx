@@ -122,9 +122,9 @@ export default function ChangeContractSection(){
             var contract = i
             setTerms(contract?.terms)
             setAuth(contract?.authority.toString())
-            setNote(contract?.notes)
+            setNote(contract?.notes || "")
             setType(contract?.storageType.toString())
-            setOwner(contract?.chainOfOwnership)
+            setOwner(contract?.chainOfOwnership || "")
             setSigner1(contract?.signature1)
             setSigner2(contract?.signature2)
 

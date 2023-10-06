@@ -5,7 +5,7 @@ export default function DropDown() {
     const [isActive, setIsActive] = useState(false);
     const [selected, setIsSelected] = useState("Choose type");
     
-    function handleBlur(e: Event) {
+    function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
       setIsActive(false)
     }
     return (
@@ -31,7 +31,9 @@ export default function DropDown() {
             >
             <div
                 onClick={(e) => {
-                setIsSelected(e.target.textContent);
+                const target = e.target as HTMLElement;
+                const textContent = target.textContent || ""; // Use an empty string as the default value
+                setIsSelected(textContent);
                 setIsActive(!isActive);
                 }}
                 className={styles.item}
@@ -41,7 +43,9 @@ export default function DropDown() {
             <div
                 className={styles.item}
                 onClick={(e) => {
-                setIsSelected(e.target.textContent);
+                const target = e.target as HTMLElement;
+                const textContent = target.textContent || ""; // Use an empty string as the default value
+                setIsSelected(textContent);
                 setIsActive(!isActive);
                 }}
             >
@@ -50,7 +54,9 @@ export default function DropDown() {
             <div
                 className={styles.item}
                 onClick={(e) => {
-                setIsSelected(e.target.textContent);
+                const target = e.target as HTMLElement;
+                const textContent = target.textContent || ""; // Use an empty string as the default value
+                setIsSelected(textContent);
                 setIsActive(!isActive);
                 }}
             >

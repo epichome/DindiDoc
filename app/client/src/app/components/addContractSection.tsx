@@ -45,7 +45,7 @@ export default function AddContractSection(){
     const [isActive, setIsActive] = useState(false);
     const [selected, setIsSelected] = useState("Choose type");
     
-    function handleBlur(e: Event) {
+    function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
       setIsActive(false)
     }
 
@@ -104,7 +104,8 @@ export default function AddContractSection(){
                                         >
                                         <div
                                             onClick={(e) => {
-                                            setIsSelected(e.target.textContent);
+                                            const target = e.target as HTMLElement;
+                                            setIsSelected(target.textContent || "");
                                             setIsActive(!isActive);
                                             }}
                                             className={styles.item}
@@ -114,7 +115,8 @@ export default function AddContractSection(){
                                         <div
                                             className={styles.item}
                                             onClick={(e) => {
-                                            setIsSelected(e.target.textContent);
+                                            const target = e.target as HTMLElement;
+                                            setIsSelected(target.textContent || "");
                                             setIsActive(!isActive);
                                             }}
                                         >
@@ -123,7 +125,8 @@ export default function AddContractSection(){
                                         <div
                                             className={styles.item}
                                             onClick={(e) => {
-                                            setIsSelected(e.target.textContent);
+                                            const target = e.target as HTMLElement;
+                                            setIsSelected(target.textContent || "");
                                             setIsActive(!isActive);
                                             }}
                                         >
