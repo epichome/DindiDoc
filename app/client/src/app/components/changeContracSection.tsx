@@ -10,11 +10,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { useSearchParams } from 'next/navigation'
-import fetchContractData from '../api/fetchContract/route';
-import addSignature from "../api/addSignature/route";
-import addNote from '../api/addNote/route'
-import transferContract from '../api/transferContract/route'
-import deleteContract from '../api/deleteContract/route'
+import fetchContractData from '../api/fetchContract/funct';
+import addSignature from "../api/addSignature/funct";
+import addNote from '../api/addNote/funct'
+import transferContract from '../api/transferContract/funct'
+import deleteContract from '../api/deleteContract/funct'
 
 import CryptoJS from 'crypto-js';
 

@@ -6,8 +6,8 @@ import { Keypair } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import useIsMounted from "../api/utils/useIsmounted";
-import createContract from "../api/createContract/route";
-import fetchContracts from '../api/fetchContracts/route';
+import createContract from "../api/createContract/funct";
+import fetchContracts from '../api/fetchContracts/funct';
 
 import { useWallet } from '@solana/wallet-adapter-react';
 
