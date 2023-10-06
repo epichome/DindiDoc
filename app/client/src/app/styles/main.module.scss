@@ -436,3 +436,37 @@
         height: 225px;
     }
 }
+
+@media (max-width: 720px) {
+    .landingTxt h1{
+        font-size: 70px;
+    }
+    .landingTxt p{
+        font-size: 14px;
+    }
+    .textTitle{
+        font-size: 30px;
+        width: 230px;
+    }
+    .textSubheader{
+        font-size: 20px;
+    }
+    .footer{
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .footerRight h1{
+        font-size: 14px;
+    }
+
+    .imageContainer{
+        justify-content: center;
+    }
+
+    .imageSmallL{
+        width: 90%;
+    }
+    .imageSmallR{
+        display: none;
+    }
+}

@@ -74,7 +74,7 @@ export default function Home() {
             <Link href="/dashboard"><div className={styles.contactHeader}></div></Link>
         </div>
       </section>
-      <div className={menuActive ? styles.menuDropDownInactive : styles.menuDropDownActive}>
+      <div className={menuActive ? styles.menuDropDownActive : styles.menuDropDownInactive}>
         <div className={styles.menuContainer}>
           <div className={styles.menuTop}>
             <Image
