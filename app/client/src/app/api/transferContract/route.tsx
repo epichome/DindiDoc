@@ -9,7 +9,7 @@ import {
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 
-export default async function createContract(
+export default async function TransferContract(
     newOwnerPublicKey: string,
     newOwnerName: string,
     wallet: AnchorWallet,

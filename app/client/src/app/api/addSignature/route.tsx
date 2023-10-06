@@ -8,7 +8,7 @@ import {
 } from "../utils/constants";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 
-export default async function addSignature(
+export default async function AddSignature(
     proof: string,
     signer: number,
     wallet: AnchorWallet,

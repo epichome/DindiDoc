@@ -83,7 +83,7 @@ export default function ViewContractSection(){
     useEffect(() => {
         // This function will run when filterNameVar changes
         filterName();
-      }, [filterNameVar, selected, filterName]); // Add filterNameVar as a dependency
+      }, [filterNameVar, selected]); // Add filterNameVar as a dependency
 
     useEffect(() => {
         const fetchData = async (wallet: any) => {

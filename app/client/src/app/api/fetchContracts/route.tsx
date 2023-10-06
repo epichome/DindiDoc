@@ -8,7 +8,7 @@ import {
 } from "../utils/constants";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 
-export default async function fetchContracts(
+export default async function FetchContracts(
     walletOfAuthority: string,
     wallet: AnchorWallet,
   ) {
