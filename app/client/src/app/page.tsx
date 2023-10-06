@@ -15,7 +15,7 @@ export default function Home() {
   function hideHeader(){
     setHeaderShowState(styles.headerInactive)
   }
-
+  const [menuActive, setMenuActive] = useState(false)
   const [LandingState, setLandingState] = useState (styles.landing)
   const [HeaderColorState, setHeaderColorState] = useState ("")
   function scrollChange(){
@@ -65,12 +65,42 @@ export default function Home() {
           />
         </div>
         <div className={styles.headerRight}>
+            <button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>
+              Menu
+            </button>
             <Link href="/whitepaper"><p>ABOUT</p></Link>
             <Link href="https://github.com/epichome/DindiDoc"><p>GITHUB</p></Link>
             <Link href="/dashboard"><p>LOGIN</p></Link>
             <Link href="/dashboard"><div className={styles.contactHeader}></div></Link>
         </div>
       </section>
+      <div className={menuActive ? styles.menuDropDownInactive : styles.menuDropDownActive}>
+        <div className={styles.menuContainer}>
+          <div className={styles.menuTop}>
+            <Image
+              src="/images/logov2.png"
+              width={50}
+              height={50}
+              alt="Picture of the author"
+            />
+
+            <button className={styles.menuClose} onClick={() => setMenuActive(!menuActive)}>
+              Close
+            </button>
+          </div>
+          <div className={styles.menuMiddle}>
+              <Link href="/whitepaper"><p>ABOUT</p></Link>
+              <Link href="https://github.com/epichome/DindiDoc"><p>GITHUB</p></Link>
+              <Link href="/dashboard"><p>LOGIN</p></Link>
+          </div>
+          <div className={styles.menuBtm}>
+             <Link className={styles.menuLoginBtn} href="/dashboard"><p>Go to Dashboard</p></Link>
+          </div>
+        </div>
+        <div className={styles.menuOverlay}>
+
+        </div>
+      </div>
       <section className={`${styles.landing} ${LandingState}`} id='landing'>
           <div className={styles.landingTxt}>
               <h1>DindiDoc</h1>

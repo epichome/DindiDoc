@@ -62,6 +62,12 @@
 
     transition: top 0.2s linear, background-color 0.3s linear ;;
 }
+.lgHidden{
+    display: none;
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}
 .headerLeft{
     display: flex;
     align-items: center;
@@ -105,8 +111,92 @@
 .headerChange{
     background-color: white !important;
 }
-//landing
 
+.menuDropDownInactive{
+    display: none;
+}
+
+.menuDropDownActive{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 50;
+}
+
+.menuContainer{
+    position: fixed;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    width: 40%;
+    min-width: 330px;
+    background-color: #ac68cc;
+    
+}
+.menuTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 18px;
+    padding-top: 5vh;
+}
+
+.menuTop img{
+    background: black;
+    height: 40px;
+    width: 50px;
+}
+
+.menuTop button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menuMiddle{
+    padding: 18px;
+    margin-top: 50px;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menuMiddle a{
+    text-decoration: none;
+    color: black;
+}
+
+.menuBtm{
+    margin-top: auto;
+    padding: 18px;
+}
+.menuLoginBtn{
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    border-radius: 4px;
+}
+
+.menuOverlay{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+}
+//landing
 .landing{
     width: 100vw;
     height: 200vh;
@@ -299,6 +389,20 @@
 
 //mobile 
 @media (max-width: 1020px) {
+    .headerRight a{
+        display: none;
+    }
+    .lgHidden{
+        display: flex;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .menuDropDownActive{
+        display: flex;
+    }
+
     .landingTxt h1{
         font-size: 100px;
     }
