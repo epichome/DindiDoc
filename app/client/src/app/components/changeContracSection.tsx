@@ -179,7 +179,7 @@ export default function ChangeContractSection(){
                 </div>
             </div>
             <section id="searchbar" className={styles.searchbar}>
-                <button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>
+                {wallet &&(<button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>)}
                 <Link href="/dashboard" className={styles.searchbarInput}>
                     <p>Back</p>
                 </Link>

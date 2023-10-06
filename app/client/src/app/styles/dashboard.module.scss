@@ -423,3 +423,23 @@
         display: flex;
     }
 }
+
+@media (max-width: 720px) {
+    .searchbarInput{
+        display: none;
+    }
+
+    .WalletMultiButton button{
+        font-size: 12px;
+    }
+
+    .contentWrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoCard{
+        max-width: 400px;
+    }
+}

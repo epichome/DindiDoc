@@ -79,7 +79,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 30px;
+    margin-top: 30px;
 }
 
 .contentContainer{
@@ -334,5 +334,27 @@
     }
     .menuDropDownActive{
         display: flex;
+    }
+}
+
+@media (max-width: 720px) {
+    .ds{
+        display: none;
+    }
+    .tableTitle{
+        font-size: 12px;
+    }
+    .tableContent{
+        font-size: 10px;
+    }
+    .helloContainer{
+        font-size: 14px;
+    }
+    .textSubHeader{
+        font-size: 18px;
+    }
+
+    .dropdown{
+        width: 150px;
     }
 }

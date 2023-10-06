@@ -73,7 +73,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 30px;
+    margin-top: 30px;
 }
 
 .contentContainer{
@@ -370,5 +370,25 @@
     }
     .menuDropDownActive{
         display: flex;
+    }
+}
+
+@media (max-width: 720px) {
+    .searchbarInput{
+        display: none;
+    }
+
+    .dropdown{
+        width: 90%;
+    }
+    .inputText{
+        width: 90%;
+    }
+
+    .helloContainer{
+        font-size: 14px;
+    }
+    .textSubHeader{
+        font-size: 18px;
     }
 }

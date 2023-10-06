@@ -144,8 +144,8 @@ export default function ViewContractSection(){
                 </div>
             </div>
             <section id="searchbar" className={styles.searchbar}>
-                <button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>
-                <Link href="/dashboard" className={styles.searchbarInput}>
+                {wallet &&(<button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>)}
+                <Link href="/dashboard" className={`${styles.searchbarInput} ${styles.ds}`}>
                     <p>Back</p>
                 </Link>
                 <div>{wallet?.publicKey.toString().substring(0, 4) + "..." + wallet?.publicKey.toString().substring(wallet?.publicKey.toString().length - 4)}</div>

@@ -107,7 +107,7 @@ export default function AddContractSection(){
                 </div>
             </div>
             <section id="searchbar" className={styles.searchbar}>
-                <button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>
+                {wallet &&(<button className={styles.lgHidden} onClick={() => setMenuActive(!menuActive)}>Menu</button>)}
                 <Link href="/dashboard" className={styles.searchbarInput}>
                     <p>Cancel</p>
                 </Link>
