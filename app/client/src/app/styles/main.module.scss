@@ -444,6 +444,10 @@
     .landingTxt p{
         font-size: 14px;
     }
+
+    .imageLarge{
+        height: 500px;
+    }
     .textTitle{
         font-size: 30px;
         width: 230px;
@@ -458,7 +462,24 @@
     .footerRight h1{
         font-size: 14px;
     }
+    .aboutFunctionContainer{
+        width: 90%;
+    }
+    .aboutFunctionContent{
+        min-width: 150px;
+    }
+    .aboutFunctionContent svg{
+        width: 50px;
+    }
+    .aboutFunctionContent p{
+        font-size: 10px;
+    }
 
+    .aboutFunctionHeader{
+        font-size: 19px !important;
+    }
+
+    
     .imageContainer{
         justify-content: center;
     }
