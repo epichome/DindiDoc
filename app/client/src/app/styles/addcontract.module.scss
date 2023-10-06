@@ -108,6 +108,12 @@
     display: none;
 }
 
+.placeContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
 .inputText{
     width: 300px;
     padding: 10px;
@@ -120,14 +126,45 @@
 .inputBtnInactive{
     width: 200px;
     height: 50px;
+    border: 1px solid #a8a8a8;
+    background-color: #ddd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputBtnActive{
     width: 200px;
     height: 50px;
     cursor: pointer;
+    border: 1px solid white;
+    background-color: #0073E6;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.inputBtnInactive svg{
+    width: 20px;
+    margin-right: 4px;
+}
+.inputBtnActive svg{
+    width: 20px;
+    margin-right: 4px;
+}
+
+
+.fileDownload{
+    width: 150px;
+    height: 45px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border: 1px solid #a8a8a8;
+    background-color: #ddd;
+}
 //dropdown
 .dropdown {
     z-index: 10000;

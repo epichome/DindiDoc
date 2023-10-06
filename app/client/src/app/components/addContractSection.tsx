@@ -146,25 +146,31 @@ export default function AddContractSection(){
                                 />
                             </div>
                             <div className={styles.contentContainerTopInfoDiv}>
-                                <h1 className={styles.textSubHeader}>Owners name</h1>
+                                <h1 className={styles.textSubHeader}>Initiators name</h1>
                                 <input 
                                     className={styles.inputText}
                                     type="text" 
+                                    placeholder=""
                                     onChange={(e) => setInputtedOwner(e.target.value)}
                                     value={inputtedOwner}
                                 />
                             </div>
                         </div>
-                        <h1 className={styles.textSubHeader}>Terms</h1>
+                        <div className={styles.placeContent}>
+                            <h1 className={styles.textSubHeader}>Terms</h1>
+                            <p>{inputtedTerms.length + inputtedOwner.length + inputtedPassword.length} / 875</p>
+                        </div>
                         <textarea
-                            placeholder="Write Your Message!"
+                            placeholder="Terms"
                             className={styles.contentContainerTerms}
                             onChange={(e) => setInputtedTerms(e.target.value)}
                             value={inputtedTerms}
                         />
                         
                         <h1 className={styles.textSubHeader}>Create Contract</h1>
-                        {selected == "Hashed" ? <button onClick={handleDownloadClick}>Download .txt File</button>: null}
+                        {selected == "Hashed" ? <button onClick={handleDownloadClick} className={styles.fileDownload}>
+                            Download .txt File
+                        </button>: null}
 
                         <div >
                             <button
@@ -225,6 +231,7 @@ export default function AddContractSection(){
                                 }
                             }}
                             >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 16v3m0 0v3m0-3h3m-3 0h-3m4-10v-.172a2 2 0 0 0-.586-1.414l-3.828-3.828A2 2 0 0 0 14.172 3H14m6 6h-4a2 2 0 0 1-2-2V3m6 6v3m-6-9H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/></svg>
                             Create contract
                             </button>
                         </div>

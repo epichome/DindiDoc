@@ -99,7 +99,7 @@ export default function ContractSection(){
                     <h1 className={styles.textHeader}>Create New Contract</h1>
                     <div className={styles.contentWrapper}>
                         <Link href={{pathname: "/dashboard/newcontract"}} className={styles.infoCardAdd}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 12h7m7 0h-7m0 0V5m0 7v7"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8" d="M5 12h7m7 0h-7m0 0V5m0 7v7"/></svg>
                         </Link>    
                     </div>
 

@@ -1,0 +1,266 @@
+@font-face {
+  font-family: 'Font';
+  src: url("/font.woff2");
+}
+
+.main {
+  width: calc(100% - 240px);
+  padding-top: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-bottom: 20px;
+  font-family: font !important;
+}
+
+.searchbar {
+  height: 50px;
+  width: 100%;
+  border: solid 1px lightgray;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.searchbarInput {
+  width: 200px;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 10px;
+  overflow: hidden;
+  -webkit-transition: border 0.4s;
+  transition: border 0.4s;
+}
+
+.searchbarInput input {
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+
+.searchbarInput input:focus {
+  outline: none !important;
+}
+
+.searchbarInput:hover {
+  border: 1px solid blue;
+}
+
+.searchbarInput div {
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.searchbarInput:hover div {
+  color: blue;
+}
+
+.WalletMultiButton button {
+  background-color: #0f0d0d;
+}
+
+.helloContainer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 30px;
+}
+
+.contentContainer {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: solid 1px #e6e6e6;
+}
+
+.contentContainerTopInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.contentContainerTopInfoDiv {
+  width: 50%;
+}
+
+.contentContainerTerms {
+  width: 100%;
+  height: 400px;
+  resize: none;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #777;
+  font-weight: 500;
+}
+
+.contentContainerHidden {
+  display: none;
+}
+
+.placeContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+
+.inputText {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #777;
+  font-weight: 500;
+}
+
+.inputBtnInactive {
+  width: 200px;
+  height: 50px;
+  border: 1px solid #a8a8a8;
+  background-color: #ddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.inputBtnActive {
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: #0073E6;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.inputBtnInactive svg {
+  width: 20px;
+  margin-right: 4px;
+}
+
+.inputBtnActive svg {
+  width: 20px;
+  margin-right: 4px;
+}
+
+.fileDownload {
+  width: 150px;
+  height: 45px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid #a8a8a8;
+  background-color: #ddd;
+}
+
+.dropdown {
+  z-index: 10000;
+  width: 300px;
+  position: relative;
+}
+
+.dropdown,
+.dropdown * {
+  z-index: 10;
+}
+
+.dropdown .dropdownBtn {
+  cursor: pointer;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #777;
+  font-weight: 500;
+}
+
+.dropdownContent {
+  position: absolute;
+  background-color: white;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  border: solid 1px #e6e6e6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdownContent .item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownContent .item:hover {
+  background: #fcfcfc;
+}
+
+.faCaretUp {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid lightgray;
+}
+
+.faCaretDown {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid lightgray;
+}
+/*# sourceMappingURL=addcontract.module.css.map */
