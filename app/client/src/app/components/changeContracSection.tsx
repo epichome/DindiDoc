@@ -135,7 +135,7 @@ export default function ChangeContractSection(){
                 setIsOriginal(true)
             }
         });
-    }, [wallet])
+    }, [wallet, contractAddress])
 
     return(
         <main className={styles.main}>
@@ -306,7 +306,7 @@ export default function ChangeContractSection(){
                         <div className={styles.textContainer}>
                             <div className={styles.textLabel}>Notes: </div>
                             {note?.split("\n").map((ind) => (
-                                <div className={styles.textSmallArea}>
+                                <div className={styles.textSmallArea} key={ind}>
                                     {type == "1" ? ind: ind}
                                 </div>
                             ))}
@@ -315,7 +315,9 @@ export default function ChangeContractSection(){
                         <div className={styles.textContainer}>
                             <div className={styles.textLabel}>ChainOfOwners:</div>
                             {owner?.split("\n").map((ind) => (
-                                <div className={styles.textSmallArea}>{type == "1" ? ind: ind}</div>
+                                <div className={styles.textSmallArea} key={ind}>
+                                    {type == "1" ? ind: ind}
+                                </div>
                             ))}
                         </div>
                     </div>

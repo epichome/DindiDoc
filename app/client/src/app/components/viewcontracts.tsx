@@ -83,7 +83,7 @@ export default function ViewContractSection(){
     useEffect(() => {
         // This function will run when filterNameVar changes
         filterName();
-      }, [filterNameVar, selected]); // Add filterNameVar as a dependency
+      }, [filterNameVar, selected, filterName]); // Add filterNameVar as a dependency
 
     useEffect(() => {
         const fetchData = async (wallet: any) => {
@@ -204,7 +204,7 @@ export default function ViewContractSection(){
                     </div>
                     <div>
                         {contentList && contentListFiltered.map((ind) => (
-                            <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.tableContent} >
+                            <Link href={{pathname: ind.link, query: {adress: ind.adress}}} className={styles.tableContent} key={ind.adress}>
                                 <div>{ind.adress.substring(0, 4) + "..." + ind.adress.substring(ind.adress.length - 4)}</div>
                                 
                                 <div className={styles.infoCardTop}>
