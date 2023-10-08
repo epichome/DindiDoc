@@ -125,7 +125,7 @@ export default function Home() {
                 />
 
             <h2 className={styles.textHeader}>Digital Original Documents in short</h2>
-            <h2 className={styles.textMain}>Digital Original Documentsare electronic documents that have been uniquely linked to a blockchain network and satisfies the requirments of the law to be considered original. A blockchain is a decentralized and immutable ledger that records transactions and data across a network of computers. When a document is stored on a blockchain, it is encrypted and timestamped to ensure its integrity and security. This process creates a tamper-proof and transparent record of the document&apos;s existence and content at a specific point in time.</h2>
+            <h2 className={styles.textMain}>Digital Original Documents are electronic documents that have been uniquely linked to a blockchain network and satisfies the requirments of the law to be considered original. A blockchain is a decentralized and immutable ledger that records transactions and data across a network of computers. When a document is stored on a blockchain, it is encrypted and timestamped to ensure its integrity and security. This process creates a tamper-proof and transparent record of the document&apos;s existence and content at a specific point in time.</h2>
         
             <h2 className={styles.textHeader}>Key Characteristics</h2>
             <h2 className={styles.textSubKHeader}>Immutability</h2>
